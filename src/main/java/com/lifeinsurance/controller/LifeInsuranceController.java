@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class LifeInsuranceHelloWorld {
+public class LifeInsuranceController {
 	
 	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
 	public ModelAndView helloWorld() {
