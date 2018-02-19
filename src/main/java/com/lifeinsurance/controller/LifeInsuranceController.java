@@ -11,7 +11,7 @@ public class LifeInsuranceController {
 	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
 	public ModelAndView helloWorld() {
 		
-		String message = "<div><h3>Life Insurance Service ! </h3></div>";
+		String message = "<div><h3>Life Insurance Service !</h3></div>";
 		return new ModelAndView("welcome", "message", message);
 		
 	}
