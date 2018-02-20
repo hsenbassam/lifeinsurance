@@ -12,15 +12,14 @@ import com.lifeinsurance.model.User;
 public class UserServiceImpl implements UserService {
 	
 	@Autowired 
-	private UserDaoImpl userDaoImpl;
+	UserDaoImpl userDao;
 	
-	//@Transactional
 	public void register(User user) {
-		userDaoImpl.register(user);
+		userDao.register(user);
 	}
 
 	public User validateUser(Login login) {
-		return userDaoImpl.validateUser(login);
+		return userDao.validateUser(login);
 	}
 
 }
