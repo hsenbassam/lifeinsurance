@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app>
 	<display-name>Life Insurance Service</display-name>
-	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
-	</welcome-file-list>
+	<!-- <welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>-->
 	<servlet>
 		<servlet-name>lifeinsurance</servlet-name>
 		<servlet-class>
@@ -18,9 +18,38 @@
 	<servlet-mapping>
 		<servlet-name>lifeinsurance</servlet-name>
 		<url-pattern>/</url-pattern>
-		<url-pattern>/welcome.jsp</url-pattern>
-		<url-pattern>/index.jsp</url-pattern>
-		<url-pattern>/welcome.html</url-pattern>
-		<url-pattern>*.html</url-pattern>
 	</servlet-mapping>
+	<filter>
+    <filter-name>CorsFilter</filter-name>
+    <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+    <init-param>
+        <param-name>cors.allowed.origins</param-name>
+        <param-value>*</param-value>
+    </init-param>
+    <init-param>
+        <param-name>cors.allowed.methods</param-name>
+        <param-value>GET,POST,HEAD,OPTIONS,PUT,DELETE</param-value>
+    </init-param>
+    <init-param>
+        <param-name>cors.allowed.headers</param-name>
+        <param-value>Content-Type,Authorization, X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers</param-value>
+    </init-param>
+    <init-param>
+        <param-name>cors.exposed.headers</param-name>
+        <param-value>Access-Control-Allow-Origin,Access-Control-Allow-Credentials</param-value>
+    </init-param>
+    <init-param>
+        <param-name>cors.support.credentials</param-name>
+        <param-value>true</param-value>
+    </init-param>
+    <!--  <init-param>
+        <param-name>cors.preflight.maxage</param-name>
+        <param-value>10</param-value>
+    </init-param>
+    -->
+</filter>
+<filter-mapping>
+    <filter-name>CorsFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping> 
 </web-app>

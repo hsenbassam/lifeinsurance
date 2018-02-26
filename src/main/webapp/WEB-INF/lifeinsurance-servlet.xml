@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -11,13 +12,41 @@
  	<import resource="classpath:user-beans.xml" />
 	<context:component-scan base-package="com.lifeinsurance.controller" />
  	
-	<bean id="viewResolver"
+    <mvc:annotation-driven/>
+    
+    <mvc:resources mapping="/**" location="/WEB-INF/" />
+ 
+ 
+    
+	<!-- <bean id="viewResolver"
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.JstlView" />
-		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="prefix" value="/WEB-INF/jsp" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	    <property name="prefix" value="/WEB-INF/" />
+	    <property name="suffix" value=".html" />
+	</bean>
+	 -->
+	
+
+	
+	<!-- Use Jackson for JSON conversion (POJO to JSON outbound). -->
+	<bean id="jsonMessageConverter"
+	            class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/> 
+	
+	<!-- Use JSON conversion for messages -->
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+	    <property name="messageConverters">
+	        <list>
+	            <ref bean="jsonMessageConverter"/>
+	        </list>
+	    </property>
+	</bean>
+	
+	<context:annotation-config />
    
  
 </beans>
