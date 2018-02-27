@@ -25,34 +25,6 @@ public class LoginController {
 	@Autowired
 	UserService userService;
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView showLogin(HttpServletRequest request, HttpServletResponse response) {
-		
-		ModelAndView modelAndView = new ModelAndView("login");
-		modelAndView.addObject("login", new Login());
-		
-		return modelAndView;
-	}
-	
-//	@RequestMapping(value = "/loginProcess", method = RequestMethod.POST)
-//	public ModelAndView loginProcess(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("login") Login login) {
-//		
-//		ModelAndView modelAndView = null;
-//		
-//		User user = userService.validateUser(login);
-//		
-//		if(null != user) {
-//			modelAndView = new ModelAndView("welcome");
-//			modelAndView.addObject("firstname", user.getFirstname());
-//		}
-//		else {
-//			modelAndView = new ModelAndView("login");
-//			modelAndView.addObject("message", "Username or Password is Incorrect");
-//		}
-//		
-//		return modelAndView;
-//		
-//	}
 	@RequestMapping(value = "/loginProcess", method = RequestMethod.POST, consumes = {"application/json"})
 	public @ResponseBody User loginProcess(@RequestBody Login login) {	
 		

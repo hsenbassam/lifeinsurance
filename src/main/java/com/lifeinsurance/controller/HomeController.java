@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController {
 	
-	@RequestMapping(value = {"/", "/home", "/products", "/shopping-list", "/login", "/products"})
+	@RequestMapping(value = {"/", "/home", "/products", "/shopping-list", "/login", "register"})
 	public String showHome() {
 		
 		return "index.html";

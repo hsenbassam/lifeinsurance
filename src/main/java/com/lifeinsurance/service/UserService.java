@@ -1,5 +1,7 @@
 package com.lifeinsurance.service;
 
+import java.text.ParseException;
+
 import org.springframework.stereotype.Service;
 
 import com.lifeinsurance.model.Login;
@@ -8,7 +10,7 @@ import com.lifeinsurance.model.User;
 @Service
 public interface UserService {
 	
-	void register(User user);
+	User register(User user) throws ParseException;
 	
 	User validateUser(Login login);
 

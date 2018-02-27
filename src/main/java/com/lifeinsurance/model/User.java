@@ -8,12 +8,14 @@ public class User {
 	private String lastname;
 	private String email;
 	private String address;
-	private int phone;
+	private String phone;
+	private String birthday;
+	private String datecreated;
 	
 	public User() {}
 	
 	
-	public User(String username, String password, String firstname, String lastname, String email, String address, int phone) {
+	public User(String username, String password, String firstname, String lastname, String email, String address, String phone) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -85,16 +87,36 @@ public class User {
 	}
 
 
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
 
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
+
+	public String getBirthday() {
+		return birthday;
+	}
+
+
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+
+
+	public String getDatecreated() {
+		return datecreated;
+	}
+
+
+	public void setDatecreated(String datecreated) {
+		this.datecreated = datecreated;
+	}
+
 	
-	
-	  
+  
 	  
 }
