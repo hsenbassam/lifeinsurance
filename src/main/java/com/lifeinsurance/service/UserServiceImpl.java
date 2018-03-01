@@ -1,6 +1,8 @@
 package com.lifeinsurance.service;
 
 
+import java.text.ParseException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,8 +16,8 @@ public class UserServiceImpl implements UserService {
 	@Autowired 
 	UserDaoImpl userDao;
 	
-	public void register(User user) {
-		userDao.register(user);
+	public User register(User user) throws ParseException {
+		return userDao.register(user);
 	}
 
 	public User validateUser(Login login) {

@@ -1,6 +1,6 @@
 package com.lifeinsurance.model;
 
-public class Login {
+public class Login{
 	
 	private String username;
 	private String password;
@@ -25,7 +25,5 @@ public class Login {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
 
 }
