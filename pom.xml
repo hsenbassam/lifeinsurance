@@ -8,8 +8,9 @@
   <name>lifeinsurance Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <properties>
-  <spring.version>4.3.2.RELEASE</spring.version>
-  <servlet.version>3.1.0</servlet.version>
+	  <spring.version>4.3.2.RELEASE</spring.version>
+	  <springsecurity.version>5.0.0.RELEASE</springsecurity.version>
+	  <servlet.version>3.1.0</servlet.version>
   </properties>
   <dependencies>
     <dependency>
@@ -61,23 +62,32 @@
 		<artifactId>jstl</artifactId>
 		<version>1.2</version>
 	</dependency>
+	
+	
     <!-- Spring Security -->
-    <dependency>
-		<groupId>org.springframework.security</groupId>
-		<artifactId>spring-security-web</artifactId>
-		<version>5.0.0.RELEASE</version>
-	</dependency>
+      <dependency>
+          <groupId>org.springframework.security</groupId>
+          <artifactId>spring-security-web</artifactId>
+          <version>${springsecurity.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework.security</groupId>
+          <artifactId>spring-security-config</artifactId>
+          <version>${springsecurity.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework.security</groupId>
+          <artifactId>spring-security-taglibs</artifactId>
+          <version>${springsecurity.version}</version>
+      </dependency>
+	
 	<!-- PostgreSQL -->
 	<dependency>
 	    <groupId>org.postgresql</groupId>
 	    <artifactId>postgresql</artifactId>
 	    <version>42.0.0</version>
 	</dependency>
-	
-
 	<!-- Faster XML - Jackson -->
-	
-		
 	<dependency>
 	    <groupId>com.fasterxml.jackson.core</groupId>
 	    <artifactId>jackson-core</artifactId>
@@ -104,8 +114,6 @@
         <version>2.4.3</version>
     </dependency>
     
-   
-	
   </dependencies>
   <build>
     <finalName>lifeinsurance</finalName>
