@@ -2,6 +2,7 @@ package com.lifeinsurance.service;
 
 
 import java.text.ParseException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,7 +14,7 @@ import com.lifeinsurance.model.User;
 @Component
 public class UserServiceImpl implements UserService {
 	
-	@Autowired 
+	@Autowired
 	UserDaoImpl userDao;
 	
 	public User register(User user) throws ParseException {
@@ -22,6 +23,11 @@ public class UserServiceImpl implements UserService {
 
 	public User validateUser(Login login) {
 		return userDao.validateUser(login);
+	}
+
+	@Override
+	public List<String> getRoles(String username) {
+		return userDao.getRoles(username);
 	}
 
 }

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app>
 	<display-name>Life Insurance Service</display-name>
-	<!-- <welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-	</welcome-file-list>-->
+
 	<servlet>
 		<servlet-name>lifeinsurance</servlet-name>
 		<servlet-class>
@@ -40,22 +38,19 @@
     </init-param>
     <init-param>
         <param-name>cors.exposed.headers</param-name>
-        <param-value>Access-Control-Allow-Origin,Access-Control-Allow-Credentials</param-value>
+        <param-value>Access-Control-Allow-Origin,Access-Control-Allow-Credentials, Access-Control-Expose-Headers, Token</param-value>
     </init-param>
     <init-param>
         <param-name>cors.support.credentials</param-name>
         <param-value>true</param-value>
     </init-param>
-    <!--  <init-param>
-        <param-name>cors.preflight.maxage</param-name>
-        <param-value>10</param-value>
-    </init-param>
-    -->
+
 </filter>
 <filter-mapping>
     <filter-name>CorsFilter</filter-name>
     <url-pattern>/*</url-pattern>
 </filter-mapping> 
+
 
 
 

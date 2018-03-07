@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.lifeinsurance.dao.ProductDaoImpl;
 import com.lifeinsurance.model.Product;
 
+import com.lifeinsurance.service.ProductService;
+
 public class ProductServiceImpl implements ProductService {
 	
 	

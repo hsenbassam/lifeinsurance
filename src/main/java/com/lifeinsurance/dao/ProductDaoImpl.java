@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.lifeinsurance.model.Product;
+import com.lifeinsurance.dao.ProductDao;
+import com.lifeinsurance.dao.ProductMapper;
 
 public class ProductDaoImpl implements ProductDao {
 	

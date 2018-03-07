@@ -16,8 +16,7 @@ public class HomeController {
 	
 	@RequestMapping(value = {"/", "/products", "/shopping-cart", 
 							"/login", "/register", "/checkout", 
-							"/my-orders", "/order-success",
-							"/admin/products","/admin/products/new", "/admin/orders"
+							"/my-orders", "/order-success","/admin/**"
 							})
 	
 	public String showHome() {

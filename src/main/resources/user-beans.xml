@@ -26,4 +26,12 @@
         <property name="username" value="postgres" />
         <property name="password" value="P@ssw0rd" />
     </bean>
+    
+    <bean id="authenticationProvider" class="com.lifeinsurance.security.JwtAuthenticationProvider" />
+    <bean id="entryPoint" class="com.lifeinsurance.security.JwtAuthenticationEntryPoint" />
+    <bean id="jwtGenerator" class="com.lifeinsurance.security.JwtGenerator" />
+    
+  
+  
+   
 </beans>
