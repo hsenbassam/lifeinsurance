@@ -42,15 +42,18 @@ public class LoginController {
 	public @ResponseBody User login(@RequestBody Login login, HttpServletResponse response) {	
 		
 		User user = userService.validateUser(login);
+		
+		if (user != null) {
 
-		JwtUser jwtUser = new JwtUser();
-		
-		jwtUser.setUserName(user.getUsername());
-		jwtUser.setRole(userService.getRoles(user.getUsername()));
-		jwtUser.setId(new Random().nextInt(1000));
-		
-		String token = jwtGenerator.generate(jwtUser);
-		response.setHeader("Token", token);
+			JwtUser jwtUser = new JwtUser();
+			
+			jwtUser.setUserName(user.getUsername());
+			jwtUser.setRole(userService.getRoles(user.getUsername()));
+			jwtUser.setId(new Random().nextInt(1000));
+			
+			String token = jwtGenerator.generate(jwtUser);
+			response.setHeader("Token", token);
+		}
 	
 		
 //		if (user != null) {
