@@ -14,7 +14,7 @@ import com.lifeinsurance.model.JwtUser;
 public class JwtValidator {
 
 
-    private String secret = "youtube";
+    private String secret = "secret";
 
     @SuppressWarnings("unchecked")
 	public JwtUser validate(String token) {
