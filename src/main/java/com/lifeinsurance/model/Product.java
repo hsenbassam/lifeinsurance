@@ -5,13 +5,13 @@ public class Product {
 	private long id;
 	private String title;
 	private String description;
-	private String category;
+	private long category;
 	private int price;
 
 	public Product() {
 	}
 
-	public Product(long id, String title, String description, String category, int price) {
+	public Product(long id, String title, String description, long category, int price) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -44,13 +44,6 @@ public class Product {
 		this.description = description;
 	}
 
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
 
 	public int getPrice() {
 		return price;
@@ -59,5 +52,15 @@ public class Product {
 	public void setPrice(int price) {
 		this.price = price;
 	}
+
+	public long getCategory() {
+		return category;
+	}
+
+	public void setCategory(long category) {
+		this.category = category;
+	}
+	
+	
 
 }

@@ -32,6 +32,7 @@ public class JwtAuthenticationProvider extends AbstractUserDetailsAuthentication
     protected UserDetails retrieveUser(String username, UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken) throws AuthenticationException {
 
         JwtAuthenticationToken jwtAuthenticationToken = (JwtAuthenticationToken) usernamePasswordAuthenticationToken;
+        
         String token = jwtAuthenticationToken.getToken();
 
         JwtUser jwtUser = validator.validate(token);
@@ -46,9 +47,7 @@ public class JwtAuthenticationProvider extends AbstractUserDetailsAuthentication
         	grantedAuthorities.add(new SimpleGrantedAuthority(role));
 
 
-        return new JwtUserDetails(jwtUser.getUserName(), jwtUser.getId(),
-                token,
-                grantedAuthorities);
+        return new JwtUserDetails(jwtUser.getUserName(), jwtUser.getId(),token, grantedAuthorities);
     }
 
     @Override
