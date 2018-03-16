@@ -13,10 +13,15 @@
     
     <bean id="userService" class="com.lifeinsurance.service.UserServiceImpl" />
     <bean id="userDao" class="com.lifeinsurance.dao.UserDaoImpl" />
+    
     <bean id="productService" class="com.lifeinsurance.service.ProductServiceImpl" />
     <bean id="productDao" class="com.lifeinsurance.dao.ProductDaoImpl" />
+    
     <bean id="categoryService" class="com.lifeinsurance.service.CategoryServiceImpl" />
     <bean id="categoryDao" class="com.lifeinsurance.dao.CategoryDaoImpl" />
+    
+    <bean id="simulatorService" class="com.lifeinsurance.service.SimulatorServiceImpl" />
+    
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <property name="dataSource" ref="datasource" />
     </bean>

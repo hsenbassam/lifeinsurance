@@ -18,10 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class OrderController {
 	
 	@RequestMapping(value = "/api/orders", method = RequestMethod.GET)
-	public @ResponseBody String getOrders() {	
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		System.out.println(authentication.getName());
-		
+	public @ResponseBody String getOrders() {		
 		return "Test Orders";
 	}
 
