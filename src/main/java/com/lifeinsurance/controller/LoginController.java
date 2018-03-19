@@ -45,36 +45,12 @@ public class LoginController {
 		
 		if (user != null) {
 
-			JwtUser jwtUser = new JwtUser();
-			
-			jwtUser.setUserName(user.getUsername());
-			jwtUser.setRole(userService.getRoles(user.getUsername()));
-			jwtUser.setId(new Random().nextInt(1000));
-			
+			JwtUser jwtUser = new JwtUser(user.getUsername(), new Random().nextInt(1000), userService.getRoles(user.getId()));
 			String token = jwtGenerator.generate(jwtUser);
+			
 			response.setHeader("Token", token);
 		}
 	
-		
-//		if (user != null) {
-//			Key key = MacProvider.generateKey();
-//	
-//			String compactJws = Jwts.builder()
-//			  //.setSubject(user.getUsername())
-//			  .claim("username", user.getUsername())
-//			  .claim("name", user.getFirstname() + " " + user.getLastname())
-//			  .claim("admin", true)
-//			  .signWith(SignatureAlgorithm.HS512, key)
-//			  .compact();
-//			
-//			System.out.println(compactJws);
-//			
-//			response.setHeader("Token", compactJws);
-//		}
-//		else {
-//			response.setStatus(401);
-//		}
-		
 		
 		return user;
 	}

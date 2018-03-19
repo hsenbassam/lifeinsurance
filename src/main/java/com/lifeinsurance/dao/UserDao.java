@@ -12,7 +12,7 @@ public interface UserDao {
 	
 	User validateUser(Login login);
 	
-	List<String> getRoles(String username);
+	List<String> getRoles(int userId);
 	
 
 }

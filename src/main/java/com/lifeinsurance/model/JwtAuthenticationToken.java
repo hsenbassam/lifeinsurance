@@ -28,4 +28,6 @@ public class JwtAuthenticationToken extends UsernamePasswordAuthenticationToken{
     public Object getPrincipal() {
         return null;
     }
+    
+    
 }
