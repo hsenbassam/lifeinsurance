@@ -8,10 +8,11 @@ public class Quote {
 	private String marial;
 	private int coverage;
 	private double amount;
+	private String occupation;
 	private double monthly_income;
 	private boolean health1;
 	private boolean health2;
-	private boolean health3;
+	private boolean health3; //Smoker
 	
 	
 	public Quote() {
@@ -19,11 +20,12 @@ public class Quote {
 	}
 
 
-	public Quote(String gender, String birthday, String country, String marial, int coverage, double amount,
+	public Quote(String gender, String birthday, String occupation, String country, String marial, int coverage, double amount,
 			double monthly_income, boolean health1, boolean health2, boolean health3) {
 		super();
 		this.gender = gender;
 		this.birthday = birthday;
+		this.occupation = occupation;
 		this.country = country;
 		this.marial = marial;
 		this.coverage = coverage;
@@ -134,6 +136,17 @@ public class Quote {
 	public void setHealth3(boolean health3) {
 		this.health3 = health3;
 	}
+
+
+	public String getOccupation() {
+		return occupation;
+	}
+
+
+	public void setOccupation(String occupation) {
+		this.occupation = occupation;
+	}
+	
 	
 
 }

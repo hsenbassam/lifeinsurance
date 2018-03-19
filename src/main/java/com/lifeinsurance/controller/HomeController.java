@@ -13,19 +13,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HomeController {
-	
-	@RequestMapping(value = {"/", "/products", "/shopping-cart", 
-							"/login", "/register", "/checkout", 
-							"/my-orders", "/order-success","/admin/**"
-							})
-	
-	public String showHome() {
-		
-		return "index.html";
-		
-	}
-	
 
-	
-	
+	@RequestMapping(value = { "/", "/products/**", "/shopping-cart", "/login",
+							"/register", "/checkout", "/my-orders",
+							"/order-success", "/admin/**" }, method = RequestMethod.GET)
+
+	public String showHome() {
+
+		return "index.html";
+
+	}
+
 }

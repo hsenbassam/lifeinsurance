@@ -50,8 +50,4 @@ public class Premium {
 		this.ultra_monthly = ultra_monthly;
 	}
 	
-	
-	
-
-
 }
