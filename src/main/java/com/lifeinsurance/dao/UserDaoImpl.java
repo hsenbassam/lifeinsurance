@@ -14,7 +14,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.lifeinsurance.model.Login;
+import com.lifeinsurance.model.AuthenticationCredentials;
 import com.lifeinsurance.model.User;
 import com.lifeinsurance.dao.UserDao;
 import com.lifeinsurance.dao.UserMapper;
@@ -27,9 +27,9 @@ public class UserDaoImpl implements UserDao {
 //	@Autowired
 //	PasswordEncoder passwordEncoder;
 
-	public User validateUser(Login login) {
+	public User validateUser(AuthenticationCredentials credentials) {
 		
-		String sql = "select * from users where username = '" +  login.getUsername() + "' and password = '" + login.getPassword() + "'";
+		String sql = "select * from users where username = '" +  credentials.getUsername() + "' and password = '" + credentials.getPassword() + "'";
 		List<User> users = jdbcTemplate.query(sql, new UserMapper());
 		
 		return users.size() > 0 ? users.get(0) : null;

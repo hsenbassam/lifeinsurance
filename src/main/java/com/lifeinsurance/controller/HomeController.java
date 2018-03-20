@@ -1,27 +1,27 @@
 package com.lifeinsurance.controller;
 
-import java.io.IOException;
-
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HomeController {
+	
+	public static final String INDEX_PAGE = "index.html";
 
-	@RequestMapping(value = { "/", "/products/**", "/shopping-cart", "/login",
+	@RequestMapping(value = { "/", "/products/**", "/products", "/quote/**", "/shopping-cart", "/login",
 							"/register", "/checkout", "/my-orders",
-							"/order-success", "/admin/**" }, method = RequestMethod.GET)
-
+							"/order-success", "/admin/**", "/about" }, method = RequestMethod.GET)
 	public String showHome() {
 
-		return "index.html";
+		return INDEX_PAGE;
 
 	}
+	
+//	@RequestMapping(value = "/*", method = RequestMethod.GET)
+//	public String index() {
+//	    return "index";
+//	}
 
 }

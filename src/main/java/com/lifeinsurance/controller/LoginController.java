@@ -21,8 +21,8 @@ import io.jsonwebtoken.impl.crypto.MacProvider;
 import java.security.Key;
 import java.util.Random;
 
+import com.lifeinsurance.model.AuthenticationCredentials;
 import com.lifeinsurance.model.JwtUser;
-import com.lifeinsurance.model.Login;
 import com.lifeinsurance.model.User;
 import com.lifeinsurance.security.JwtGenerator;
 import com.lifeinsurance.service.UserService;
@@ -39,9 +39,9 @@ public class LoginController {
 	JwtGenerator jwtGenerator;
 	
 	@RequestMapping(value = "/loginProcess", method = RequestMethod.POST, consumes = {"application/json"})
-	public @ResponseBody User login(@RequestBody Login login, HttpServletResponse response) {	
+	public @ResponseBody User login(@RequestBody AuthenticationCredentials credentials, HttpServletResponse response) {	
 		
-		User user = userService.validateUser(login);
+		User user = userService.validateUser(credentials);
 		
 		if (user != null) {
 
