@@ -30,4 +30,25 @@ public class UserServiceImpl implements UserService {
 		return userDao.getRoles(userId);
 	}
 
+	@Override
+	public List<User> getAll() {
+		return userDao.getAll();
+	}
+
+	@Override
+	public User get(int id) {
+		return userDao.get(id);
+	}
+
+	@Override
+	public User update(int id, User user) throws ParseException {
+		return userDao.update(id, user);
+	}
+
+	@Override
+	public void delete(int id) {
+	   userDao.delete(id);
+		
+	}
+
 }

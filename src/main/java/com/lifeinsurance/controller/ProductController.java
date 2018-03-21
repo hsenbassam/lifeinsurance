@@ -16,7 +16,8 @@ import com.lifeinsurance.model.Product;
 import com.lifeinsurance.service.ProductService;
 
 @Controller
-@RequestMapping(consumes = {"application/json"}, produces = {"application/json"})
+@RequestMapping(produces = {"application/json"})
+//consumes = {"application/json"},
 public class ProductController {
 	
 	@Autowired
@@ -51,7 +52,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/productsProcess/{id}", method = RequestMethod.DELETE)
-	public void deleteProduct(@PathVariable int id, HttpServletResponse res) {	
+	public void deleteProduct(@PathVariable int id) {	
 		productService.delete(id);
 	}
 	
