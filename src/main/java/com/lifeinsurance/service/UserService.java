@@ -17,5 +17,13 @@ public interface UserService {
 	User validateUser(AuthenticationCredentials credentials);
 	
 	List<String> getRoles(int userId);
+	
+	List<User> getAll();
+	
+	User get(int id);
+	
+	User update(int id, User user) throws ParseException;
+	
+	void delete(int id);
 
 }

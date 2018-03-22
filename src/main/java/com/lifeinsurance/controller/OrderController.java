@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
-@PreAuthorize("hasRole('ADMIN')")
 public class OrderController {
 	
 	@RequestMapping(value = "/api/orders", method = RequestMethod.GET)
+	@PreAuthorize("hasRole('ADMIN')")
 	public @ResponseBody String getOrders() {		
 		return "Test Orders";
 	}
