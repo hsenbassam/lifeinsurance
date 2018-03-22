@@ -6,5 +6,7 @@ import com.lifeinsurance.model.Quote;
 public interface SimulatorService {
 	
 	public Premium getTermLifePremium(Quote quote);
+	
+	public Premium getWholeLifePremium(Quote quote);
 
 }

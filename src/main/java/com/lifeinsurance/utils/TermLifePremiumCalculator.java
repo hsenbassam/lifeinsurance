@@ -1,14 +1,14 @@
 package com.lifeinsurance.utils;
 
 import com.lifeinsurance.model.Quote;
-import com.lifeinsurance.model.Rates;
+import com.lifeinsurance.model.TermLifeRates;
 
-public class PremiumCalculator {
+public class TermLifePremiumCalculator {
 
 	public static double getBasicAmount(Quote quote) {
 
 		long age = Converter.birthdayToAge(quote.getBirthday());
-		double basicRate = Rates.getBasicRate(age);
+		double basicRate = TermLifeRates.getBasicRate(age);
 
 		double initialBasicAmount = quote.getAmount() / 1000 * basicRate;
 
@@ -19,7 +19,7 @@ public class PremiumCalculator {
 	public static double getPlusAmount(Quote quote) {
 
 		long age = Converter.birthdayToAge(quote.getBirthday());
-		double plusRate = Rates.getPlusRate(age);
+		double plusRate = TermLifeRates.getPlusRate(age);
 
 		double initialPlusAmount = quote.getAmount() / 1000 * plusRate;
 
@@ -30,7 +30,7 @@ public class PremiumCalculator {
 	public static double getUltraAmount(Quote quote) {
 
 		long age = Converter.birthdayToAge(quote.getBirthday());
-		double ultraRate = Rates.getUltraRate(age);
+		double ultraRate = TermLifeRates.getUltraRate(age);
 
 		double initialUltraAmount = quote.getAmount() / 1000 * ultraRate;
 

@@ -19,8 +19,13 @@ public class SimulatorController {
 	SimulatorService simulatorService;
 	
 	@RequestMapping(value = "/term-life", method = RequestMethod.POST)
-	public @ResponseBody Premium getPremium(@RequestBody Quote quote) {
+	public @ResponseBody Premium getTermLifePremium(@RequestBody Quote quote) {
 		return simulatorService.getTermLifePremium(quote);
+	}
+	
+	@RequestMapping(value = "/whole-life", method = RequestMethod.POST)
+	public @ResponseBody Premium getWholeLifePremium(@RequestBody Quote quote) {
+		return simulatorService.getWholeLifePremium(quote);
 	}
 
 }

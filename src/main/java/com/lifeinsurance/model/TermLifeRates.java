@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Rates {
+public class TermLifeRates {
 
 	private static final List<Rate> BASIC_RATES = Arrays.asList(new Rate(18, 24, 0.039), new Rate(25, 29, 0.047),
 			new Rate(30, 34, 0.061), new Rate(35, 39, 0.068), new Rate(40, 44, 0.076), new Rate(45, 49, 0.115),
