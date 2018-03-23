@@ -2,8 +2,6 @@ package com.lifeinsurance.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,8 +14,7 @@ import com.lifeinsurance.model.Product;
 import com.lifeinsurance.service.ProductService;
 
 @Controller
-@RequestMapping(produces = {"application/json"})
-//consumes = {"application/json"},
+@RequestMapping(produces = {"application/json"}, consumes = {"application/json"})
 public class ProductController {
 	
 	@Autowired

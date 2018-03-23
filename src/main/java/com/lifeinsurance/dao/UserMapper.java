@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.RowMapper;
 import com.lifeinsurance.model.User;
 
 class UserMapper implements RowMapper<User> {
+	
 
 	public User mapRow(ResultSet rs, int arg1) throws SQLException {
 		User user = new User();

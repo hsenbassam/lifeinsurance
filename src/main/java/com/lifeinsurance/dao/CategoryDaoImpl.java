@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.lifeinsurance.model.Category;
-import com.lifeinsurance.model.Product;
 
 public class CategoryDaoImpl implements CategoryDao {
 	
