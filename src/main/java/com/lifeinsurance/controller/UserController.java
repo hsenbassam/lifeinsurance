@@ -20,7 +20,6 @@ import com.lifeinsurance.service.UserService;
 @Controller
 @RequestMapping(produces = { "application/json" }, consumes = { "application/json" })
 public class UserController {
-	// consumes = {"application/json"},
 
 	@Autowired
 	UserService userService;

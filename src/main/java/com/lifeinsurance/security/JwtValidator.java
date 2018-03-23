@@ -33,7 +33,7 @@ public class JwtValidator {
             jwtUser.setRole((List<String>) body.get("role"));
         }
         catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
 
         return jwtUser;

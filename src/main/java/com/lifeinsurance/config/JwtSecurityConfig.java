@@ -1,16 +1,10 @@
 package com.lifeinsurance.config;
 
-import com.lifeinsurance.security.JwtAuthenticationEntryPoint;
-import com.lifeinsurance.security.JwtAuthenticationProvider;
-import com.lifeinsurance.security.JwtAuthenticationTokenFilter;
-import com.lifeinsurance.security.JwtSuccessHandler;
-
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
@@ -25,12 +19,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import java.util.Collections;
-
-import javax.servlet.http.HttpServletRequest;
+import com.lifeinsurance.security.JwtAuthenticationEntryPoint;
+import com.lifeinsurance.security.JwtAuthenticationProvider;
+import com.lifeinsurance.security.JwtAuthenticationTokenFilter;
+import com.lifeinsurance.security.JwtSuccessHandler;
 
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
@@ -59,6 +52,11 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
         filter.setAuthenticationSuccessHandler(new JwtSuccessHandler());
         return filter;
     }
+    
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder(); // Prefix $2a$
+    }
   
 
     @Bean
@@ -74,18 +72,15 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
         return source;
     }
     
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
-
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
     	 http.cors().and()
         	.csrf().disable()
-                .authorizeRequests().anyRequest().permitAll()
+                .authorizeRequests()
+                .antMatchers("/api/**").authenticated()  
+                .anyRequest().permitAll()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(entryPoint)
                 .and()
