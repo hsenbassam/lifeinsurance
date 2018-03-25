@@ -20,8 +20,6 @@ import com.lifeinsurance.service.UserService;
 @Controller
 public class LoginController {
 	
-	//Key key = MacProvider.generateKey();
-	
 	@Autowired
 	UserService userService;
 	
@@ -35,7 +33,7 @@ public class LoginController {
 		
 		if (user != null) {
 
-			JwtUser jwtUser = new JwtUser(user.getUsername(), new Random().nextInt(1000), userService.getRoles(user.getId()));
+			JwtUser jwtUser = new JwtUser(user.getEmail(), new Random().nextInt(1000), userService.getRoles(user.getId()));
 			String token = jwtGenerator.generate(jwtUser);
 			
 			response.setHeader("Token", token);

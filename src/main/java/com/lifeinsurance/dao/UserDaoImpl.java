@@ -30,9 +30,8 @@ public class UserDaoImpl implements UserDao {
 
 	public User validateUser(AuthenticationCredentials credentials) {
 		
-		String sql = "select * from users where username = '" + credentials.getUsername() + "' and isenabled = true";
+		String sql = "select * from users where email = '" + credentials.getEmail() + "' and isenabled = true";
 		List<User> users = jdbcTemplate.query(sql, new UserMapper());
-
 		User user = users.size() > 0 ? users.get(0) : null;
 		
 		if(user != null) {	
@@ -45,8 +44,8 @@ public class UserDaoImpl implements UserDao {
 
 	public User register(User user) throws ParseException {
 		String sql = "insert into users "
-				+ "(username, password, firstname, lastname, email, address, phone, birthday) "
-				+ "values(?,?,?,?,?,?,?,?)";
+				+ "(email, password, firstname, lastname, address, phone, birthday) "
+				+ "values(?,?,?,?,?,?,?)";
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 		Date dateBirthday = format.parse(user.getBirthday());
 		String hashPass = passwordEncoder.encode(user.getPassword());
@@ -55,14 +54,13 @@ public class UserDaoImpl implements UserDao {
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
 				PreparedStatement statement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-				statement.setString(1, user.getUsername());
+				statement.setString(1, user.getEmail());
 				statement.setString(2, hashPass);
 				statement.setString(3, user.getFirstname());
 				statement.setString(4, user.getLastname());
-				statement.setString(5, user.getEmail());
-				statement.setString(6, user.getAddress());
-				statement.setString(7, user.getPhone());
-				statement.setDate(8, new java.sql.Date(dateBirthday.getTime()));
+				statement.setString(5, user.getAddress());
+				statement.setString(6, user.getPhone());
+				statement.setDate(7, new java.sql.Date(dateBirthday.getTime()));
 				return statement;
 			}
 		}, holder);
@@ -109,13 +107,13 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public User update(int id, User user) throws ParseException {
 
-		String sql = "update users set firstname = ?, lastname = ?, email = ?, username = ?,birthday = ?, address = ?,phone = ? where id = ?";
+		String sql = "update users set firstname = ?, lastname = ?, email = ?,birthday = ?, address = ?,phone = ? where id = ?";
 
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 		Date dateBirthday = format.parse(user.getBirthday());
 
 		jdbcTemplate.update(sql, new Object[] { user.getFirstname(), user.getLastname(), user.getEmail(),
-				user.getUsername(), dateBirthday, user.getAddress(), user.getPhone(), id });
+				 dateBirthday, user.getAddress(), user.getPhone(), id });
 
 		return user;
 	}

@@ -3,7 +3,7 @@ package com.lifeinsurance.model;
 import java.util.List;
 
 public class JwtUser {
-    private String userName;
+    private String email;
     private long id;
     private List<String> role;
     
@@ -14,15 +14,15 @@ public class JwtUser {
 		super();
 	}
 
-	public JwtUser(String userName, long id, List<String> role) {
+	public JwtUser(String email, long id, List<String> role) {
 		super();
-		this.userName = userName;
+		this.email = email;
 		this.id = id;
 		this.role = role;
 	}
 
-	public void setUserName(String userName) {
-        this.userName = userName;
+	public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setId(long id) {
@@ -33,8 +33,8 @@ public class JwtUser {
         this.role = role;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getEmail() {
+        return email;
     }
 
     public long getId() {
