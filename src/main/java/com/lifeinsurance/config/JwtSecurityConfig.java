@@ -35,13 +35,13 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
     private JwtAuthenticationProvider authenticationProvider;
     @Autowired
     private JwtAuthenticationEntryPoint entryPoint;
+    
+ 
 
     @Bean
     @Override
     public AuthenticationManager authenticationManager() {
-
     	return new ProviderManager(Arrays.asList((AuthenticationProvider) authenticationProvider));
-        
     }
     
 
