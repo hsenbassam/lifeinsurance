@@ -91,6 +91,7 @@
 	    <artifactId>postgresql</artifactId>
 	    <version>42.0.0</version>
 	</dependency>
+	
 	<!-- Faster XML - Jackson -->
 	<dependency>
 	    <groupId>com.fasterxml.jackson.core</groupId>
@@ -119,11 +120,24 @@
     </dependency>
     
     <!-- JWT -->
-    
     <dependency>
-    <groupId>io.jsonwebtoken</groupId>
+    	<groupId>io.jsonwebtoken</groupId>
 	    <artifactId>jjwt</artifactId>
 	    <version>0.9.0</version>
+	</dependency>
+	
+	<!-- PayPal SDK -->
+	<dependency>
+    	<groupId>com.paypal.sdk</groupId>
+	    <artifactId>rest-api-sdk</artifactId>
+	    <version>1.13.1</version>
+	</dependency>
+	
+	<!-- GSON - Google Json -->
+	<dependency>
+	    <groupId>com.google.code.gson</groupId>
+	    <artifactId>gson</artifactId>
+	    <version>2.8.2</version>
 	</dependency>
 	
   </dependencies>
