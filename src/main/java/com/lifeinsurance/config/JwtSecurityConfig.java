@@ -25,6 +25,9 @@ import com.lifeinsurance.security.JwtAuthenticationProvider;
 import com.lifeinsurance.security.JwtAuthenticationTokenFilter;
 import com.lifeinsurance.security.JwtSuccessHandler;
 
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.impl.crypto.MacProvider;
+
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
 @Configuration
@@ -57,6 +60,12 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(); // Prefix $2a$
     }
+    
+    @Bean
+    public byte[] signingKey() {
+    	//return MacProvider.generateKey(SignatureAlgorithm.HS256).getEncoded();
+    	return "secret".getBytes();
+    }
   
 
     @Bean
@@ -72,6 +81,7 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
         return source;
     }
     
+   
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

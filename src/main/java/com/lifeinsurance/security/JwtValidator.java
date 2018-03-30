@@ -2,7 +2,7 @@ package com.lifeinsurance.security;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lifeinsurance.model.JwtUser;
@@ -13,8 +13,8 @@ import io.jsonwebtoken.Jwts;
 @Component
 public class JwtValidator {
 
-	@Value("signing-key:Yn2kjibddFAWtnPJ2AFlL8WXmohJMCvigQggaEypa5E=")
-	private String signingKey;
+	@Autowired
+	byte[] signingKey;
 
 	@SuppressWarnings("unchecked")
 	public JwtUser validate(String token) {

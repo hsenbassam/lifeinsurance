@@ -1,6 +1,6 @@
 package com.lifeinsurance.security;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lifeinsurance.model.JwtUser;
@@ -12,8 +12,9 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @Component
 public class JwtGenerator {
 
-	@Value("signing-key:Yn2kjibddFAWtnPJ2AFlL8WXmohJMCvigQggaEypa5E=")
-	private String signingKey;
+	
+	@Autowired
+	byte[] signingKey;
 
 	public String generate(JwtUser jwtUser) {
 
@@ -21,7 +22,6 @@ public class JwtGenerator {
 		claims.put("id", String.valueOf(jwtUser.getId()));
 		claims.put("role", jwtUser.getRole());
 
-		//KeySingleton.getInstance().generateKey();
 
 		return Jwts.builder().setClaims(claims).signWith(SignatureAlgorithm.HS256, signingKey).compact();
 	}
