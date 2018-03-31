@@ -15,9 +15,7 @@ public class ProductDaoImpl implements ProductDao {
 	public List<Product> getAll() {
 		
 		String sql = "select * from products";
-		
-		//select p.id, p.description, p.title, p.price, c.name as category from public.products p inner join categories c on p.category_id = c.id
-		
+				
 		List<Product> products = jdbcTemplate.query(sql, new ProductMapper());
 		
 		return products.size() > 0 ? products : null;

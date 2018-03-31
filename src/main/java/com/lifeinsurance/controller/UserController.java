@@ -48,7 +48,7 @@ public class UserController {
 
 	@RequestMapping(value = "/api/users/{id}", method = RequestMethod.DELETE)
 	@PreAuthorize("hasRole('ADMIN')")
-	public void deleteUser(@PathVariable int id, HttpServletResponse res) throws ParseException {
+	public void deleteUser(@PathVariable int id, HttpServletResponse response) throws ParseException {
 		userService.delete(id);
 
 	}

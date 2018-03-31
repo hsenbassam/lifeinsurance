@@ -17,7 +17,6 @@
 	<servlet-mapping>
 		<servlet-name>lifeinsurance</servlet-name>
 		<url-pattern>/</url-pattern>
-
 	</servlet-mapping>
 	
 	

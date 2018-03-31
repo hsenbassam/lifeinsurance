@@ -16,6 +16,12 @@
 
 	<bean id="productService" class="com.lifeinsurance.service.ProductServiceImpl" />
 	<bean id="productDao" class="com.lifeinsurance.dao.ProductDaoImpl" />
+	
+	<bean id="cartProductService" class="com.lifeinsurance.service.CartProductServiceImpl" />
+	<bean id="cartProductDao" class="com.lifeinsurance.dao.CartProductDaoImpl" />
+	
+	<bean id="orderService" class="com.lifeinsurance.service.OrderServiceImpl" />
+	<bean id="orderDao" class="com.lifeinsurance.dao.OrderDaoImpl" />
 
 	<bean id="simulatorService" class="com.lifeinsurance.service.SimulatorServiceImpl" />
 

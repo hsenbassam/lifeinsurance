@@ -1,20 +1,31 @@
 package com.lifeinsurance.payment;
 
 
-import com.google.gson.Gson;
-import com.paypal.api.payments.*;
-import com.paypal.base.rest.APIContext;
-import com.paypal.base.rest.PayPalRESTException;
-import org.springframework.stereotype.Component;
-
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Component;
+
+import com.google.gson.Gson;
+import com.paypal.api.payments.Amount;
+import com.paypal.api.payments.Links;
+import com.paypal.api.payments.Payer;
+import com.paypal.api.payments.Payment;
+import com.paypal.api.payments.PaymentExecution;
+import com.paypal.api.payments.RedirectUrls;
+import com.paypal.api.payments.Transaction;
+import com.paypal.base.rest.APIContext;
+import com.paypal.base.rest.PayPalRESTException;
+
 @Component
 public class PayPalClient {
+	
+	private static final String LOCALHOST_CLIENT = "http://localhost:4200/";
+	private static final String LOCALHOST_SERVER = "http://localhost:8080/lifeinsurance/";
 
 	// payment@lifeinsurance.com - Sandbox Account PayPal
     String clientId = "AV3W_WxYt-h8irbEpFmQJ-I4urvlFkmpXtmxkCjC3CNCTwn915JaK8-Go6uPUyQdBlleDgCpIMkWUqNk";
@@ -40,8 +51,8 @@ public class PayPalClient {
         payment.setTransactions(transactions);
 
         RedirectUrls redirectUrls = new RedirectUrls();
-        redirectUrls.setCancelUrl("http://localhost:4200/payment/confirm");
-        redirectUrls.setReturnUrl("http://localhost:4200/payment/process");
+        redirectUrls.setCancelUrl(LOCALHOST_SERVER + "payment/confirm");
+        redirectUrls.setReturnUrl(LOCALHOST_SERVER + "payment/process");
         payment.setRedirectUrls(redirectUrls);
         Payment createdPayment;
         try {
@@ -84,6 +95,8 @@ public class PayPalClient {
                 response.put("payment", gson.fromJson(createdPaymentJson, Object.class));
             }
         } catch (PayPalRESTException e) {
+        	response.put("status", "failure");
+        	response.put("issue", e.getDetails());
             System.err.println(e.getDetails());
         }
         return response;
