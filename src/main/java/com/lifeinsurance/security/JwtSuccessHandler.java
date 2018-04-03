@@ -11,6 +11,6 @@ import java.io.IOException;
 
 public class JwtSuccessHandler implements AuthenticationSuccessHandler{
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
-        System.out.println("Successfully Authentication");
+        System.out.println("Request has been successfully sent - you are authenticated");
     }
 }

@@ -9,8 +9,8 @@ public class HomeController {
 
 	public static final String INDEX_PAGE = "index.html";
 
-	@RequestMapping(value = { "/", "/products", "/profile", "/shopping-cart", "/login",
-					"/register","/checkout", "/my-orders", "/order-success", "/about" },
+	@RequestMapping(value = { "/", "/products","/payment/**", "/profile", "/shopping-cart", "/login",
+					"/register","/checkout", "/about" },
 					method = RequestMethod.GET)
 	public String showHome() {
 

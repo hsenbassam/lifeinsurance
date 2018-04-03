@@ -25,9 +25,6 @@ import com.lifeinsurance.security.JwtAuthenticationProvider;
 import com.lifeinsurance.security.JwtAuthenticationTokenFilter;
 import com.lifeinsurance.security.JwtSuccessHandler;
 
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.impl.crypto.MacProvider;
-
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
 @Configuration
@@ -63,8 +60,7 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
     
     @Bean
     public byte[] signingKey() {
-    	//return MacProvider.generateKey(SignatureAlgorithm.HS256).getEncoded();
-    	return "secret".getBytes();
+    	return "signing-key:Yn2kjibddFAWtnPJ2AFlL8WXmohJMCvigQggaEypa5E=".getBytes();
     }
   
 

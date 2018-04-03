@@ -1,20 +1,30 @@
 package com.lifeinsurance.controller;
 
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.lifeinsurance.service.OrderService;
 
 
 
 @Controller
+@RequestMapping(value = "/api/orders", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 public class OrderController {
 	
-	@RequestMapping(value = "/api/orders", method = RequestMethod.GET)
-	@PreAuthorize("hasRole('ADMIN')")
-	public @ResponseBody String getOrders() {		
-		return "Test Orders";
+	@Autowired
+	OrderService orderService;
+	
+	@PostMapping
+	public @ResponseBody int addOrder(@RequestParam("userId") int userId) {
+
+		int ordersCount = orderService.add(userId);
+		return ordersCount;
+
 	}
 
 }
