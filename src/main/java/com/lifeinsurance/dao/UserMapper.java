@@ -21,6 +21,7 @@ class UserMapper implements RowMapper<User> {
 		user.setPhone(rs.getString("phone"));
 		user.setBirthday(rs.getString("birthday"));
 		user.setDatecreated(rs.getString("datecreated"));
+		user.setIsenabled(rs.getBoolean("isenabled"));
 		return user;
 	}
 }

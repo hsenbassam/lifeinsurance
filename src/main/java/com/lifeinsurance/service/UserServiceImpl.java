@@ -51,4 +51,9 @@ public class UserServiceImpl implements UserService {
 		
 	}
 
+	@Override
+	public User changePassword(int id, String passObj) {
+		return userDao.changePassword(id, passObj);
+	}
+
 }

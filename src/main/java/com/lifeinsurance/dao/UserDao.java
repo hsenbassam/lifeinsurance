@@ -14,6 +14,10 @@ public interface UserDao {
 	
 	List<String> getRoles(int userId);
 	
+	void setRoles(int userId, List<String> roles);
+	
+	void deleteRoles(int userId);
+	
 	List<User> getAll();
 	
 	User get(int id);
@@ -22,4 +26,5 @@ public interface UserDao {
 	
 	void delete(int id);
 
+	User changePassword(int id, String passObj);
 }

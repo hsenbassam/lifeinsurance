@@ -51,8 +51,8 @@ public class PayPalClient {
         payment.setTransactions(transactions);
 
         RedirectUrls redirectUrls = new RedirectUrls();
-        redirectUrls.setCancelUrl(LOCALHOST_SERVER + "payment/confirm");
-        redirectUrls.setReturnUrl(LOCALHOST_SERVER + "payment/process");
+        redirectUrls.setCancelUrl(LOCALHOST_CLIENT + "payment/confirm");
+        redirectUrls.setReturnUrl(LOCALHOST_CLIENT + "payment/process");
         payment.setRedirectUrls(redirectUrls);
         Payment createdPayment;
         try {

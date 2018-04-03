@@ -36,7 +36,6 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtAuthenticationEntryPoint entryPoint;
     
- 
 
     @Bean
     @Override
@@ -44,6 +43,7 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
     	return new ProviderManager(Arrays.asList((AuthenticationProvider) authenticationProvider));
     }
     
+
 
     @Bean
     public JwtAuthenticationTokenFilter authenticationTokenFilter() {
