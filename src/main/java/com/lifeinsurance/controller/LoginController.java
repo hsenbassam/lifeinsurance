@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lifeinsurance.exception.NotFoundException;
 import com.lifeinsurance.model.AuthenticationCredentials;
 import com.lifeinsurance.model.JwtUser;
 import com.lifeinsurance.model.User;
@@ -25,7 +26,7 @@ public class LoginController {
 	JwtGenerator jwtGenerator;
 
 	@PostMapping(value = "/loginProcess", consumes = "application/json")
-	public User login(@RequestBody AuthenticationCredentials credentials, HttpServletResponse response) {
+	public User login(@RequestBody AuthenticationCredentials credentials, HttpServletResponse response) throws NotFoundException {
 
 		User user = userService.validateUser(credentials);
 
@@ -40,5 +41,7 @@ public class LoginController {
 
 		return user;
 	}
+	
+	
 
 }

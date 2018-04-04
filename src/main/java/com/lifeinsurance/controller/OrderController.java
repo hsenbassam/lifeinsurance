@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.lifeinsurance.exception.NotFoundException;
 import com.lifeinsurance.service.OrderService;
 
 @Controller
@@ -17,7 +18,7 @@ public class OrderController {
 	OrderService orderService;
 	
 	@PostMapping
-	public @ResponseBody int addOrder(@RequestParam("userId") int userId) {
+	public @ResponseBody int addOrder(@RequestParam("userId") int userId) throws NotFoundException {
 
 		int ordersCount = orderService.add(userId);
 		return ordersCount;

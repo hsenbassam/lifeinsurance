@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.lifeinsurance.exception.InternalServerException;
+import com.lifeinsurance.exception.NotFoundException;
 import com.lifeinsurance.model.User;
 import com.lifeinsurance.service.UserService;
 
@@ -28,28 +30,28 @@ public class UserController {
 
 	@GetMapping
 	@PreAuthorize("hasRole('ADMIN')")
-	public @ResponseBody List<User> getUsers() {
+	public @ResponseBody List<User> getUsers() throws NotFoundException {
 
 		List<User> users = userService.getAll();
 		return users;
 	}
 
 	@GetMapping("{id}")
-	public @ResponseBody User getUser(@PathVariable int id) {
+	public @ResponseBody User getUser(@PathVariable int id) throws NotFoundException {
 		User user = userService.get(id);
 		return user;
 	}
 	
 
 	@PutMapping("{id}")
-	public @ResponseBody User updateUser(@PathVariable int id, @RequestBody User user) throws ParseException {
+	public @ResponseBody User updateUser(@PathVariable int id, @RequestBody User user) throws ParseException, NotFoundException, InternalServerException {
 		User userUpdated = userService.update(id, user);
 		return userUpdated;
 	}
 
 	@DeleteMapping("{id}")
 	@PreAuthorize("hasRole('ADMIN')")
-	public void deleteUser(@PathVariable int id, HttpServletResponse response) throws ParseException {
+	public void deleteUser(@PathVariable int id, HttpServletResponse response) throws ParseException, NotFoundException {
 		userService.delete(id);
 
 	}
@@ -58,7 +60,7 @@ public class UserController {
 	//Password Management
 	
 	@PutMapping("changePassword/{id}")
-	public @ResponseBody User changePassword(@PathVariable int id, @RequestBody String passObj) throws ParseException {
+	public @ResponseBody User changePassword(@PathVariable int id, @RequestBody String passObj) throws ParseException, InternalServerException, NotFoundException {
 
 		User userUpdated = userService.changePassword(id, passObj);
 		return userUpdated;
