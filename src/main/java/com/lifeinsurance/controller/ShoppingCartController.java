@@ -5,7 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +19,7 @@ import com.lifeinsurance.model.CartProduct;
 import com.lifeinsurance.service.CartProductService;
 
 @Controller
-@RequestMapping(value = "/api/shopping-cart", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/shopping-cart", produces = "application/json" , consumes = "application/json")
 public class ShoppingCartController {
 
 	@Autowired
@@ -43,7 +42,7 @@ public class ShoppingCartController {
 
 	}
 	
-	@DeleteMapping(value="/{id}")
+	@DeleteMapping("/{id}")
 	public void deleteProduct(@PathVariable int id, HttpServletResponse response) {	
 		cartProductService.delete(id);
 	}

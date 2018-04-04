@@ -1,7 +1,6 @@
 package com.lifeinsurance.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,10 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lifeinsurance.service.OrderService;
 
-
-
 @Controller
-@RequestMapping(value = "/api/orders", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/orders", produces = "application/json", consumes = "application/json")
 public class OrderController {
 	
 	@Autowired

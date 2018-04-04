@@ -13,9 +13,6 @@
 
 	<bean id="userService" class="com.lifeinsurance.service.UserServiceImpl" />
 	<bean id="userDao" class="com.lifeinsurance.dao.UserDaoImpl" />
-
-	<bean id="productService" class="com.lifeinsurance.service.ProductServiceImpl" />
-	<bean id="productDao" class="com.lifeinsurance.dao.ProductDaoImpl" />
 	
 	<bean id="cartProductService" class="com.lifeinsurance.service.CartProductServiceImpl" />
 	<bean id="cartProductDao" class="com.lifeinsurance.dao.CartProductDaoImpl" />
@@ -40,6 +37,9 @@
 	<bean id="authenticationProvider" class="com.lifeinsurance.security.JwtAuthenticationProvider" />
 	<bean id="entryPoint" class="com.lifeinsurance.security.JwtAuthenticationEntryPoint" />
 	<bean id="jwtGenerator" class="com.lifeinsurance.security.JwtGenerator" />
+	
+	<bean id="paypalClient" class="com.lifeinsurance.payment.PayPalClient" />
+	
 
 
 </beans>
