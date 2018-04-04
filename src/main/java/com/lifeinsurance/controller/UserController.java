@@ -34,14 +34,13 @@ public class UserController {
 
 	@RequestMapping(value = "/api/users/{id}", method = RequestMethod.GET)
 	public @ResponseBody User getUser(@PathVariable int id) {
-
 		User user = userService.get(id);
 		return user;
 	}
+	
 
 	@RequestMapping(value = "/api/users/{id}", method = RequestMethod.PUT)
 	public @ResponseBody User updateUser(@PathVariable int id, @RequestBody User user) throws ParseException {
-
 		User userUpdated = userService.update(id, user);
 		return userUpdated;
 	}
@@ -51,6 +50,16 @@ public class UserController {
 	public void deleteUser(@PathVariable int id, HttpServletResponse response) throws ParseException {
 		userService.delete(id);
 
+	}
+	
+	
+	//Password Mgt
+	
+	@RequestMapping(value = "/api/users/changePassword/{id}", method = RequestMethod.PUT)
+	public @ResponseBody User changePassword(@PathVariable int id, @RequestBody String passObj) throws ParseException {
+
+		User userUpdated = userService.changePassword(id, passObj);
+		return userUpdated;
 	}
 
 }

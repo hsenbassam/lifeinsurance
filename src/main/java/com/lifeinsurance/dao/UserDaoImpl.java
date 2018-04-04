@@ -17,6 +17,8 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.lifeinsurance.model.AuthenticationCredentials;
 import com.lifeinsurance.model.User;
 
@@ -24,27 +26,26 @@ public class UserDaoImpl implements UserDao {
 
 	@Autowired
 	JdbcTemplate jdbcTemplate;
-	
+
 	@Autowired
 	PasswordEncoder passwordEncoder;
 
 	public User validateUser(AuthenticationCredentials credentials) {
-		
+
 		String sql = "select * from users where email = '" + credentials.getEmail() + "' and isenabled = true";
 		List<User> users = jdbcTemplate.query(sql, new UserMapper());
 		User user = users.size() > 0 ? users.get(0) : null;
-		
-		if(user != null) {	
-			if (passwordEncoder.matches(credentials.getPassword(),user.getPassword()) == false)
-				user = null;	
+
+		if (user != null) {
+			if (passwordEncoder.matches(credentials.getPassword(), user.getPassword()) == false)
+				user = null;
 		}
 		return user;
 
 	}
 
 	public User register(User user) throws ParseException {
-		String sql = "insert into users "
-				+ "(email, password, firstname, lastname, address, phone, birthday) "
+		String sql = "insert into users (email, password, firstname, lastname, address, phone, birthday) "
 				+ "values(?,?,?,?,?,?,?)";
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 		Date dateBirthday = format.parse(user.getBirthday());
@@ -77,14 +78,6 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public List<String> getRoles(int userId) {
-		String sql = "SELECT r.name FROM roles AS r INNER JOIN user_roles AS ur ON r.id = ur.role_id "
-				+ "INNER JOIN users AS u ON u.id = ur.user_id where u.id= " + userId;
-		List<String> roles = jdbcTemplate.queryForList(sql, String.class);
-		return roles.size() > 0 ? roles : null;
-	}
-
-	@Override
 	public List<User> getAll() {
 
 		String sql = "select * from users";
@@ -101,20 +94,26 @@ public class UserDaoImpl implements UserDao {
 
 		List<User> users = jdbcTemplate.query(sql, new UserMapper());
 
+		List<String> roles = users.size() > 0 ? this.getRoles(users.get(0).getId()) : null;
+
+		users.get(0).setRoles(roles);
+
 		return users.size() > 0 ? users.get(0) : null;
 	}
 
 	@Override
 	public User update(int id, User user) throws ParseException {
 
-		String sql = "update users set firstname = ?, lastname = ?, email = ?,birthday = ?, address = ?,phone = ? where id = ?";
+		if (user.getRoles() != null && !this.getRoles(id).equals(user.getRoles())) {
+			System.out.println(user.getRoles());
+			this.deleteRoles(id);
+			this.setRoles(id, user.getRoles());
+		}
+		String sql = "update users set firstname = ?, lastname = ?, email = ?,birthday = ?, address = ?,phone = ?, isenabled = ? where id = ?";
 
-		DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-		Date dateBirthday = format.parse(user.getBirthday());
-
-		jdbcTemplate.update(sql, new Object[] { user.getFirstname(), user.getLastname(), user.getEmail(),
-				 dateBirthday, user.getAddress(), user.getPhone(), id });
-
+		Date dateBirthday = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(user.getBirthday());
+		jdbcTemplate.update(sql, new Object[] { user.getFirstname(), user.getLastname(), user.getEmail(), dateBirthday,
+				user.getAddress(), user.getPhone(), user.isEnabled(), id });
 		return user;
 	}
 
@@ -124,6 +123,66 @@ public class UserDaoImpl implements UserDao {
 		String sql = "delete from users where id = ?";
 
 		jdbcTemplate.update(sql, new Object[] { id });
+
+	}
+
+	@Override
+	public User changePassword(int id, String passObj) {
+		JsonObject jsonPassObject = new Gson().fromJson(passObj, JsonObject.class);
+		String newPass = jsonPassObject.get("newpass").getAsString();
+		String oldPass = jsonPassObject.get("oldpass").getAsString();
+
+		String sql = "select * from users where id = " + id;
+		List<User> users = jdbcTemplate.query(sql, new UserMapper());
+		User user = users.size() > 0 ? users.get(0) : null;
+
+		if (user == null) {
+			System.out.println("User Not found");
+			return null;
+		}
+
+		if (user != null && passwordEncoder.matches(oldPass, user.getPassword()) == false) {
+			System.out.println("Old Password is Incorrect");
+			return null;
+		}
+
+		sql = "update users set password = ? where id = ?";
+		String hashPass = passwordEncoder.encode(newPass);
+
+		int affectedRows = jdbcTemplate.update(sql, new Object[] { hashPass, id });
+		if (affectedRows > 0) {
+			user.setPassword(hashPass);
+			return user;
+		}
+		return null;
+
+	}
+
+	@Override
+	public List<String> getRoles(int userId) {
+		String sql = "SELECT r.name FROM roles AS r INNER JOIN user_roles AS ur ON r.id = ur.role_id "
+				+ "INNER JOIN users AS u ON u.id = ur.user_id where u.id= " + userId;
+		List<String> roles = jdbcTemplate.queryForList(sql, String.class);
+		return roles.size() > 0 ? roles : null;
+	}
+
+	@Override
+	public void setRoles(int userId, List<String> roles) {
+		
+		String sql = "insert into user_roles (user_id, role_id) values(?, (select id from roles where name =?))";
+		
+		for (String role : roles) {
+			jdbcTemplate.update(sql, new Object[] { userId, role });
+		}
+			
+	}
+
+	@Override
+	public void deleteRoles(int userId) {
+
+		String sql = "delete from user_roles where user_id = ?";
+
+		jdbcTemplate.update(sql, new Object[] { userId });
 
 	}
 

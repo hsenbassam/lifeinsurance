@@ -17,10 +17,13 @@
 
 	<!-- In order to use annotations in a Map -->
 	<mvc:annotation-driven />
-
+	
 	<mvc:resources mapping="/**" location="/WEB-INF/angular/" />
+	
+
 	<context:annotation-config />
 	
+			
 
 	<!-- also add the following beans to get rid of some exceptions -->
 	<bean

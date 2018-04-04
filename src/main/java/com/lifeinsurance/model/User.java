@@ -1,5 +1,9 @@
 package com.lifeinsurance.model;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class User {
 
 	private int id;
@@ -11,11 +15,14 @@ public class User {
 	private String phone;
 	private String birthday;
 	private String datecreated;
+	@JsonProperty("enabled")
+	private boolean isenabled;
+	private List<String> roles;
 	
 	public User() {}
 	
 	
-	public User(int id, String email, String password, String firstname, String lastname, String address, String phone) {
+	public User(int id, String email, String password, String firstname, String lastname, String address, String phone, boolean isenabled) {
 		super();
 		this.id= id;
 		this.email = email;
@@ -24,6 +31,7 @@ public class User {
 		this.lastname = lastname;
 		this.address = address;
 		this.phone = phone;
+		this.isenabled = isenabled;
 	}
 	
 
@@ -117,6 +125,30 @@ public class User {
 	public void setDatecreated(String datecreated) {
 		this.datecreated = datecreated;
 	}
+
+
+	public boolean isEnabled() {
+		return isenabled;
+	}
+
+
+	public void setIsenabled(boolean isenabled) {
+		this.isenabled = isenabled;
+	}
+
+
+	public List<String> getRoles() {
+		return roles;
+	}
+
+
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
+	}
+	
+	
+	
+	
 
 	
   

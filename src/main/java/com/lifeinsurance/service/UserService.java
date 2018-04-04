@@ -24,5 +24,7 @@ public interface UserService {
 	User update(int id, User user) throws ParseException;
 	
 	void delete(int id);
+	
+	User changePassword(int id, String passObj);
 
 }
