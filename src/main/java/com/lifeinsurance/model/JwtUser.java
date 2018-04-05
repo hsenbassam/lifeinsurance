@@ -7,8 +7,6 @@ public class JwtUser {
     private long id;
     private List<String> role;
     
-    
-    
 
     public JwtUser() {
 		super();
