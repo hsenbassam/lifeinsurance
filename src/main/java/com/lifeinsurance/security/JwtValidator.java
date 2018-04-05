@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.lifeinsurance.exception.JwtAuthenticationException;
 import com.lifeinsurance.model.JwtUser;
 
 import io.jsonwebtoken.Claims;
@@ -28,7 +29,7 @@ public class JwtValidator {
 			jwtUser.setId(Long.parseLong((String) body.get("id")));
 			jwtUser.setRole((List<String>) body.get("role"));
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new JwtAuthenticationException("JWT is incorrect",e);	
 		}
 
 		return jwtUser;
