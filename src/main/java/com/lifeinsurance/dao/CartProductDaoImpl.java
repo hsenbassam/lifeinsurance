@@ -51,7 +51,6 @@ public class CartProductDaoImpl implements CartProductDao {
 				}
 			}, holder);
 		} catch (Exception e) {
-
 			throw new InternalServerException("Adding Product to the cart Failed", "An error occured");
 		}
 
@@ -71,7 +70,6 @@ public class CartProductDaoImpl implements CartProductDao {
 		String sql = "delete from orders where id = ?";
 
 		int affectedRows = jdbcTemplate.update(sql, new Object[] { id });
-
 		if (affectedRows == 0)
 			throw new NotFoundException("Deleting Product from Cart Failed", "There is no cart product with id " + id);
 	}

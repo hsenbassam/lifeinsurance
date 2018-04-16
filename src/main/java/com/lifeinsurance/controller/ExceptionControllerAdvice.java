@@ -31,13 +31,13 @@ public class ExceptionControllerAdvice  {
 	
 	
  
-//	@ExceptionHandler(Exception.class)
-//	public ResponseEntity<ErrorResponse> exceptionHandler(HttpServletRequest request,Exception ex) {
-//		ErrorResponse error = new ErrorResponse();
-//		error.setErrorCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
-//		error.setErrorStatus(HttpStatus.INTERNAL_SERVER_ERROR);
-//		error.setMessage("Please contact your administrator");
-//		error.setUrl(request.getRequestURL().toString());
-//		return new ResponseEntity<ErrorResponse>(error, HttpStatus.OK);
-//	}
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<ErrorResponse> exceptionHandler(HttpServletRequest request,Exception ex) {
+		ErrorResponse error = new ErrorResponse();
+		error.setErrorCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+		error.setErrorStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+		error.setMessage("Please contact your administrator");
+		error.setUrl(request.getRequestURL().toString());
+		return new ResponseEntity<ErrorResponse>(error, HttpStatus.OK);
+	}
 }
