@@ -1,10 +1,18 @@
 package com.lifeinsurance.model;
 
+import java.sql.Timestamp;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonInclude(Include.NON_NULL)
 public class Order {
 	
 	private int id;
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd hh:mm:ss")
+	private Timestamp timestamp;
 	private String firstname;
 	private String lastname;
 	private String email;
@@ -21,10 +29,11 @@ public class Order {
 	}
 
 
-	public Order(int id, String firstname, String lastname, String email, String type, String product_package,
+	public Order(int id, Timestamp timestamp, String firstname, String lastname, String email, String type, String product_package,
 			double amount, String coverage, double premium) {
 		super();
 		this.id = id;
+		this.timestamp = timestamp;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;
@@ -43,6 +52,16 @@ public class Order {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+
+	public Timestamp getTimestamp() {
+		return timestamp;
+	}
+
+
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
 	}
 
 

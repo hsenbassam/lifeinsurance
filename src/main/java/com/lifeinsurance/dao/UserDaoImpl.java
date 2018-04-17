@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -35,7 +36,7 @@ public class UserDaoImpl implements UserDao {
 	public User validateUser(AuthenticationCredentials credentials) throws NotFoundException {
 
 		String sql = "select * from users where email = '" + credentials.getEmail() + "' and isenabled = true";
-		List<User> users = jdbcTemplate.query(sql, new UserMapper());
+		List<User> users = jdbcTemplate.query(sql, new BeanPropertyRowMapper<User>(User.class));
 		User user = users.size() > 0 ? users.get(0) : null;
 
 		if (user == null
@@ -87,7 +88,7 @@ public class UserDaoImpl implements UserDao {
 
 		String sql = "select * from users";
 
-		List<User> users = jdbcTemplate.query(sql, new UserMapper());
+		List<User> users = jdbcTemplate.query(sql,  new BeanPropertyRowMapper<User>(User.class));
 		
 		if (users.size() == 0)
 			throw new NotFoundException("Fetching User Failed", "There are no users");
@@ -100,7 +101,7 @@ public class UserDaoImpl implements UserDao {
 	public User get(int id) throws NotFoundException {
 		String sql = "select * from users where id =" + id;
 
-		List<User> users = jdbcTemplate.query(sql, new UserMapper());
+		List<User> users = jdbcTemplate.query(sql,  new BeanPropertyRowMapper<User>(User.class));
 
 		if (users.size() == 0)
 			throw new NotFoundException("Fetching User Failed", "There is no user with id = " + id);
@@ -149,7 +150,7 @@ public class UserDaoImpl implements UserDao {
 		String oldPass = jsonPassObject.get("oldpass").getAsString();
 
 		String sql = "select * from users where id = " + id;
-		List<User> users = jdbcTemplate.query(sql, new UserMapper());
+		List<User> users = jdbcTemplate.query(sql,  new BeanPropertyRowMapper<User>(User.class));
 		User user = users.size() > 0 ? users.get(0) : null;
 
 		if (user == null)

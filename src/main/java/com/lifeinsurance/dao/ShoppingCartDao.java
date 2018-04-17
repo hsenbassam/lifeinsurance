@@ -4,13 +4,13 @@ import java.util.List;
 
 import com.lifeinsurance.exception.InternalServerException;
 import com.lifeinsurance.exception.NotFoundException;
-import com.lifeinsurance.model.CartProduct;
+import com.lifeinsurance.model.Order;
 
-public interface CartProductDao {
+public interface ShoppingCartDao {
 	
-	List<CartProduct> getAll(int userId) throws NotFoundException;
+	List<Order> getAll(int userId) throws NotFoundException;
 
-	CartProduct add(CartProduct product, int userId) throws InternalServerException;
+	Order add(Order product, int userId) throws InternalServerException;
 
 	void delete(int id) throws NotFoundException;
 

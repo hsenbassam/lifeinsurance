@@ -28,9 +28,11 @@ public class OrderController {
 		return ordersCount;
 
 	}
-	
-	@GetMapping @ResponseBody List<Order> getOrders() throws NotFoundException {
-		return orderService.getAll();
+	@GetMapping @ResponseBody List<Order> getOrders(@RequestParam(value = "userId", required = false) Integer userId) throws NotFoundException {
+		if(userId == null)
+			return orderService.getAll();
+		return orderService.getByUserId(userId);
 	}
-
+	
+	
 }
