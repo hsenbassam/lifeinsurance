@@ -116,7 +116,6 @@ public class UserDaoImpl implements UserDao {
 	public User update(int id, User user) throws ParseException, NotFoundException, InternalServerException {
 
 		String sql = "update users set firstname = ?, lastname = ?, email = ?,birthday = ?, address = ?,phone = ?, isenabled = ? where id = ?";
-
 		Date dateBirthday = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(user.getBirthday());
 		int affectedRows = jdbcTemplate.update(sql, new Object[] { user.getFirstname(), user.getLastname(),
 				user.getEmail(), dateBirthday, user.getAddress(), user.getPhone(), user.isEnabled(), id });

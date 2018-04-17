@@ -118,11 +118,11 @@
 			<artifactId>jackson-dataformat-xml</artifactId>
 			<version>2.4.3</version>
 		</dependency>
-		<dependency>
+	<!-- <dependency>
 			<groupId>com.fasterxml.jackson.datatype</groupId>
 			<artifactId>jackson-datatype-jsr310</artifactId>
 			<version>2.6.5</version>
-		</dependency>
+		</dependency> -->
 
 		<!-- JWT -->
 		<dependency>

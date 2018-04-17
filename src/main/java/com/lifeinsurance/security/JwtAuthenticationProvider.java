@@ -36,10 +36,6 @@ public class JwtAuthenticationProvider extends AbstractUserDetailsAuthentication
 
         JwtUser jwtUser = validator.validate(token);
 
-        if (jwtUser == null) {
-        	throw new RuntimeException("JWT is incorrect");
-        }
-        
         
         List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
         for (String role : jwtUser.getRole())
