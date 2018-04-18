@@ -27,5 +27,10 @@ public class SimulatorController {
 	public Premium getWholeLifePremium(@RequestBody Quote quote) {
 		return simulatorService.getWholeLifePremium(quote);
 	}
+	
+	@PostMapping(value = "/universal-life")
+	public Premium getUniversalLifePremium(@RequestBody Quote quote) {
+		return simulatorService.getUniversalLifePremium(quote);
+	}
 
 }

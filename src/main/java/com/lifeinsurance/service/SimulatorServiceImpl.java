@@ -3,6 +3,7 @@ package com.lifeinsurance.service;
 import com.lifeinsurance.model.Premium;
 import com.lifeinsurance.model.Quote;
 import com.lifeinsurance.utils.TermLifePremiumCalculator;
+import com.lifeinsurance.utils.UniversalLifePremiumCalculator;
 import com.lifeinsurance.utils.WholeLifePremiumCalculator;
 
 public class SimulatorServiceImpl implements SimulatorService{
@@ -25,6 +26,16 @@ public class SimulatorServiceImpl implements SimulatorService{
 				WholeLifePremiumCalculator.getBasicAmount(quote),
 				WholeLifePremiumCalculator.getPlusAmount(quote),
 				WholeLifePremiumCalculator.getUltraAmount(quote));
+		
+		return premium;
+	}
+
+	@Override
+	public Premium getUniversalLifePremium(Quote quote) {
+		Premium premium = new Premium(
+				UniversalLifePremiumCalculator.getBasicAmount(quote),
+				UniversalLifePremiumCalculator.getPlusAmount(quote),
+				UniversalLifePremiumCalculator.getUltraAmount(quote));
 		
 		return premium;
 	}
