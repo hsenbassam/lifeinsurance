@@ -14,8 +14,8 @@
 	<bean id="userService" class="com.lifeinsurance.service.UserServiceImpl" />
 	<bean id="userDao" class="com.lifeinsurance.dao.UserDaoImpl" />
 	
-	<bean id="cartProductService" class="com.lifeinsurance.service.CartProductServiceImpl" />
-	<bean id="cartProductDao" class="com.lifeinsurance.dao.CartProductDaoImpl" />
+	<bean id="shoppingCartService" class="com.lifeinsurance.service.ShoppingCartServiceImpl" />
+	<bean id="shoppingCartDao" class="com.lifeinsurance.dao.ShoppingCartDaoImpl" />
 	
 	<bean id="orderService" class="com.lifeinsurance.service.OrderServiceImpl" />
 	<bean id="orderDao" class="com.lifeinsurance.dao.OrderDaoImpl" />

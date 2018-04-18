@@ -9,6 +9,8 @@ public interface OrderService {
 
 	int add(int userId) throws NotFoundException;
 	
-	List<Order>  getAll() throws NotFoundException;
+	List<Order> getAll() throws NotFoundException;
+	
+	List<Order> getByUserId(int userId) throws NotFoundException;
 
 }

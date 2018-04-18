@@ -17,36 +17,36 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lifeinsurance.exception.InternalServerException;
 import com.lifeinsurance.exception.NotFoundException;
-import com.lifeinsurance.model.CartProduct;
-import com.lifeinsurance.service.CartProductService;
+import com.lifeinsurance.model.Order;
+import com.lifeinsurance.service.ShoppingCartService;
 
 @Controller
 @RequestMapping(value = "/api/shopping-cart", produces = "application/json" , consumes = "application/json")
 public class ShoppingCartController {
 
 	@Autowired
-	CartProductService cartProductService;
+	ShoppingCartService shoppingCartService;
 
 	@GetMapping
-	public @ResponseBody List<CartProduct> getCartProducts(@RequestParam("userId") int userId) throws NotFoundException {
+	public @ResponseBody List<Order> getCartProducts(@RequestParam("userId") int userId) throws NotFoundException {
 
-		List<CartProduct> products = cartProductService.getAll(userId);
+		List<Order> products = shoppingCartService.getAll(userId);
 		return products;
 
 	}
 
 	@PostMapping
-	public @ResponseBody CartProduct addProductToCart(@RequestBody CartProduct product,
+	public @ResponseBody Order addProductToCart(@RequestBody Order product,
 			@RequestParam("userId") int userId) throws InternalServerException {
 
-		CartProduct cartProduct = cartProductService.add(product, userId);
+		Order cartProduct = shoppingCartService.add(product, userId);
 		return cartProduct;
 
 	}
 	
 	@DeleteMapping("/{id}")
 	public void deleteProduct(@PathVariable int id, HttpServletResponse response) throws NotFoundException {	
-		cartProductService.delete(id);
+		shoppingCartService.delete(id);
 	}
 	
 

@@ -25,4 +25,10 @@ public class OrderServiceImpl implements OrderService {
 		return orderDao.getAll();
 	}
 
+
+	@Override
+	public List<Order> getByUserId(int userId) throws NotFoundException {
+		return orderDao.getByUserId(userId);
+	}
+
 }

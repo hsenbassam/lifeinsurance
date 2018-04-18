@@ -36,7 +36,7 @@ public class ExceptionControllerAdvice  {
 		ErrorResponse error = new ErrorResponse();
 		error.setErrorCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
 		error.setErrorStatus(HttpStatus.INTERNAL_SERVER_ERROR);
-		error.setMessage("Please contact your administrator");
+		error.setMessage(ex.getMessage());
 		error.setUrl(request.getRequestURL().toString());
 		return new ResponseEntity<ErrorResponse>(error, HttpStatus.OK);
 	}

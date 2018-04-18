@@ -7,24 +7,25 @@ import java.sql.Statement;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 
 import com.lifeinsurance.exception.InternalServerException;
 import com.lifeinsurance.exception.NotFoundException;
-import com.lifeinsurance.model.CartProduct;
+import com.lifeinsurance.model.Order;
 
-public class CartProductDaoImpl implements CartProductDao {
+public class ShoppingCartDaoImpl implements ShoppingCartDao {
 
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
 	@Override
-	public List<CartProduct> getAll(int userId) throws NotFoundException {
-		String sql = "select * from orders where user_id = " + userId + " and pending=true";
+	public List<Order> getAll(int userId) throws NotFoundException {
+		String sql = "select id, timestamp, amount, premium, type, coverage, package as product_package from orders where user_id = " + userId + " and pending=true";
 
-		List<CartProduct> products = jdbcTemplate.query(sql, new CartProductMapper());
+		List<Order> products = jdbcTemplate.query(sql,  new BeanPropertyRowMapper<Order>(Order.class));
 
 		if (products.size() == 0)
 			throw new NotFoundException("Fetching Shopping Cart Product Failed",
@@ -34,7 +35,7 @@ public class CartProductDaoImpl implements CartProductDao {
 	}
 
 	@Override
-	public CartProduct add(CartProduct product, int userId) throws InternalServerException {
+	public Order add(Order product, int userId) throws InternalServerException {
 		String sql = "insert into orders(amount, premium, type, coverage, package, user_id) values(?,?,?,?,?,?)";
 		GeneratedKeyHolder holder = new GeneratedKeyHolder();
 		try {
@@ -51,7 +52,7 @@ public class CartProductDaoImpl implements CartProductDao {
 				}
 			}, holder);
 		} catch (Exception e) {
-			throw new InternalServerException("Adding Product to the cart Failed", "An error occured");
+			throw new InternalServerException("Adding Product to the cart Failed", e.getMessage());
 		}
 
 		int newId;
