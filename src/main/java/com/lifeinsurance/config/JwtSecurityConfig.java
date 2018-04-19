@@ -60,6 +60,11 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
 	public byte[] signingKey() {
 		return "signing-key:Yn2kjibddFAWtnPJ2AFlL8WXmohJMCvigQggaEypa5E=".getBytes();
 	}
+	
+	@Bean
+	public long expiration() {
+		return 604800;
+	}
 
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {

@@ -1,5 +1,7 @@
 package com.lifeinsurance.security;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +17,10 @@ public class JwtGenerator {
 	
 	@Autowired
 	byte[] signingKey;
+	
+	@Autowired
+	long expiration;
+
 
 	public String generate(JwtUser jwtUser) {
 
@@ -23,6 +29,13 @@ public class JwtGenerator {
 		claims.put("role", jwtUser.getRole());
 
 
-		return Jwts.builder().setClaims(claims).signWith(SignatureAlgorithm.HS256, signingKey).compact();
+		return Jwts.builder()
+				.setClaims(claims)
+				.setExpiration(this.generateExpirationDate())
+				.signWith(SignatureAlgorithm.HS256, signingKey).compact();
+	}
+	
+	private Date generateExpirationDate() {
+		return new Date(System.currentTimeMillis() + expiration * 1000);
 	}
 }
