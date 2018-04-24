@@ -49,7 +49,7 @@ public class OrderDaoImpl implements OrderDao {
 		
 		if (orders.size() == 0)
 			throw new NotFoundException("Fetching Policies Failed", "There are no Policies for user with id "+ userId);
-
+	
 		return orders.size() > 0 ? orders : null;
 	}
 
