@@ -24,7 +24,7 @@ import com.paypal.base.rest.PayPalRESTException;
 @Component
 public class PayPalClient {
 	
-	private static final String LOCALHOST_CLIENT = "http://localhost:4200/";
+	//private static final String LOCALHOST_CLIENT = "http://localhost:4200/";
 	private static final String LOCALHOST_SERVER = "http://localhost:8080/lifeinsurance/";
 
 	// payment@lifeinsurance.com - Sandbox Account PayPal
@@ -51,8 +51,8 @@ public class PayPalClient {
         payment.setTransactions(transactions);
 
         RedirectUrls redirectUrls = new RedirectUrls();
-        redirectUrls.setCancelUrl(LOCALHOST_CLIENT + "payment/confirm");
-        redirectUrls.setReturnUrl(LOCALHOST_CLIENT + "payment/process");
+        redirectUrls.setCancelUrl(LOCALHOST_SERVER + "#/payment/confirm");
+        redirectUrls.setReturnUrl(LOCALHOST_SERVER + "#/payment/process");
         payment.setRedirectUrls(redirectUrls);
         Payment createdPayment;
         try {
