@@ -15,7 +15,7 @@
 
 	<context:component-scan base-package="com.lifeinsurance.controller" />
 	
-	<mvc:resources mapping="/**" location="/WEB-INF/angular/" />
+	<!--  <mvc:resources mapping="/**" location="/WEB-INF/angular/" /> -->
 
 	<!-- In order to use annotations in a Map -->
 	<mvc:annotation-driven />
