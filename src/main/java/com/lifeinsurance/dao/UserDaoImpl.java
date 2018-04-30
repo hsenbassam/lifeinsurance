@@ -73,12 +73,19 @@ public class UserDaoImpl implements UserDao {
 		}
 
 		int newId;
-		if (holder.getKeys().size() > 1)
+		Date newDatecreated = null;
+		boolean newEnabled = false;
+		if (holder.getKeys().size() > 1) {
 			newId = (int) holder.getKeys().get("id");
+			newDatecreated = (Date) holder.getKeys().get("datecreated");
+			newEnabled = (boolean) holder.getKeys().get("isenabled");
+		}
 		else
 			newId = holder.getKey().intValue();
 
 		user.setId(newId);
+		user.setDatecreated(newDatecreated.toString());
+		user.setIsenabled(newEnabled);
 
 		return user;
 	}

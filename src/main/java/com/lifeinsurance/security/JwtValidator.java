@@ -47,6 +47,8 @@ public class JwtValidator {
 
 	private Boolean isTokenExpired() {
 		final Date expiration = body.getExpiration();
+		if(expiration == null)
+			throw new JwtAuthenticationException("JWT has no Expiration Date ");
 		return expiration.before(this.generateCurrentDate());
 	}
 
