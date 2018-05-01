@@ -28,15 +28,15 @@
 	<bean id="datasource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.postgresql.Driver" />
-		<!-- <property name="url"
+		<property name="url"
 			value="jdbc:postgresql://localhost:5432/lifeinsurance" />
 		<property name="username" value="postgres" />
-		<property name="password" value="P@ssw0rd" /> -->
+		<property name="password" value="P@ssw0rd" />
 		
-		<property name="url"
+		<!-- <property name="url"
 			value="jdbc:postgresql://lifeinsurance-postgresdb.chxvv2kuwajp.us-east-2.rds.amazonaws.com:5432/lifeinsurance" />
 		<property name="username" value="root" />
-		<property name="password" value="lifeinsurance" />
+		<property name="password" value="lifeinsurance" />-->
 	</bean>
 
 	<bean id="authenticationProvider" class="com.lifeinsurance.security.JwtAuthenticationProvider" />
