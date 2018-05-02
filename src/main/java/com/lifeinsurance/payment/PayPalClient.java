@@ -25,7 +25,7 @@ import com.paypal.base.rest.PayPalRESTException;
 public class PayPalClient {
 	
 	
-	private static final String SERVER = "http://18.216.136.136:8080/lifeinsurance/";
+	private static final String SERVER = "http://18.216.136.136/";
 
 	// payment@lifeinsurance.com - Sandbox Account PayPal
     String clientId = "AV3W_WxYt-h8irbEpFmQJ-I4urvlFkmpXtmxkCjC3CNCTwn915JaK8-Go6uPUyQdBlleDgCpIMkWUqNk";
