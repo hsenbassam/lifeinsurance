@@ -3,6 +3,7 @@ package com.lifeinsurance.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.lifeinsurance.dao.OrderDaoImpl;
 import com.lifeinsurance.exception.NotFoundException;
@@ -21,6 +22,7 @@ public class OrderServiceImpl implements OrderService {
 
 
 	@Override
+	@PreAuthorize("hasRole('ADMIN')")
 	public List<Order>  getAll() throws NotFoundException {
 		return orderDao.getAll();
 	}
