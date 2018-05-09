@@ -168,6 +168,14 @@
 			<version>2.8.2</version>
 		</dependency>
 
+		<!-- AWS SDK -->
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk</artifactId>
+			<version>1.11.325</version>
+		</dependency>
+
+
 	</dependencies>
 	<build>
 		<finalName>lifeinsurance</finalName>

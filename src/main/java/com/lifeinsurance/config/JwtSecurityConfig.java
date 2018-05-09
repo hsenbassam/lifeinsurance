@@ -65,6 +65,16 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
 	public long expiration() {
 		return 604800;
 	}
+	
+	@Bean
+	public String aws_access_key() {
+		return "AKIAJ66OE6DBXBJV2O2Q";
+	}
+	
+	@Bean
+	public String aws_secret_key() {
+		return "g7PVIMfTnPlmREmptc69p5FkY5wWCRnUCSclajLt";
+	}
 
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
