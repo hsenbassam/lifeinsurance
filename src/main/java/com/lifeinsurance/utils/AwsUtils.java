@@ -12,8 +12,8 @@ public class AwsUtils {
 	public static AWSCredentialsProvider getCredentials() {
 		
 
-		final String ACCESS_KEY = "AKIAJQ7SZQAHLBRKKCGQ";
-		final String SECRET_KEY = "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";
+		final String ACCESS_KEY = "";
+		final String SECRET_KEY = "";
 
 		AWSCredentials credentials = new BasicAWSCredentials(ACCESS_KEY, SECRET_KEY);
 		return new AWSCredentialsProvider() {
