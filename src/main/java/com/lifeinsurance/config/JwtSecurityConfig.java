@@ -25,6 +25,9 @@ import com.lifeinsurance.security.JwtAuthenticationProvider;
 import com.lifeinsurance.security.JwtAuthenticationTokenFilter;
 import com.lifeinsurance.security.JwtFailureHandler;
 import com.lifeinsurance.security.JwtSuccessHandler;
+import com.lifeinsurance.service.AwsEmailService;
+import com.lifeinsurance.service.AwsEmailServiceImpl;
+import com.lifeinsurance.utils.AwsUtils;
 
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
@@ -67,13 +70,8 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	
 	@Bean
-	public String aws_access_key() {
-		return "AKIAJ66OE6DBXBJV2O2Q";
-	}
-	
-	@Bean
-	public String aws_secret_key() {
-		return "g7PVIMfTnPlmREmptc69p5FkY5wWCRnUCSclajLt";
+	public AwsEmailService awsEmailService() {
+		return new AwsEmailServiceImpl(AwsUtils.createSimpleEmailService());
 	}
 
 	@Bean
