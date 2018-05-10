@@ -12,7 +12,7 @@ public class AwsUtils {
 	public static AWSCredentialsProvider getCredentials() {
 		
 
-		final String ACCESS_KEY = "";
+		final String ACCESS_KEY = ""; 
 		final String SECRET_KEY = "";
 
 		AWSCredentials credentials = new BasicAWSCredentials(ACCESS_KEY, SECRET_KEY);
