@@ -51,8 +51,8 @@ public class AwsEmailServiceImpl implements AwsEmailService {
 	}
 	
 	private Message createMessage() {
-		Body awsbody = new Body();
-		awsbody.setText(new Content(body));
+		Body awsbody = new Body().withHtml(new Content(body));
+		//awsbody.setText(new Content(body));
 		Message message = new Message(new Content(subject), awsbody);
 		return message;
 	}
