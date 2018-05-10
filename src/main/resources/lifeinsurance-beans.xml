@@ -13,10 +13,10 @@
 
 	<bean id="userService" class="com.lifeinsurance.service.UserServiceImpl" />
 	<bean id="userDao" class="com.lifeinsurance.dao.UserDaoImpl" />
-	
+
 	<bean id="shoppingCartService" class="com.lifeinsurance.service.ShoppingCartServiceImpl" />
 	<bean id="shoppingCartDao" class="com.lifeinsurance.dao.ShoppingCartDaoImpl" />
-	
+
 	<bean id="orderService" class="com.lifeinsurance.service.OrderServiceImpl" />
 	<bean id="orderDao" class="com.lifeinsurance.dao.OrderDaoImpl" />
 
@@ -27,24 +27,22 @@
 	</bean>
 	<bean id="datasource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
 		<property name="driverClassName" value="org.postgresql.Driver" />
-		<!-- <property name="url"
+
+		<property name="url"
 			value="jdbc:postgresql://localhost:5432/lifeinsurance" />
 		<property name="username" value="postgres" />
-		<property name="password" value="P@ssw0rd" />-->
-		
-		<property name="url"
-			value="jdbc:postgresql://lifeinsurance-postgresdb.chxvv2kuwajp.us-east-2.rds.amazonaws.com:5432/lifeinsurance" />
-		<property name="username" value="root" />
-		<property name="password" value="lifeinsurance" />
+		<property name="password" value="P@ssw0rd" />
+
 	</bean>
 
 	<bean id="authenticationProvider" class="com.lifeinsurance.security.JwtAuthenticationProvider" />
 	<bean id="entryPoint" class="com.lifeinsurance.security.JwtAuthenticationEntryPoint" />
 	<bean id="jwtGenerator" class="com.lifeinsurance.security.JwtGenerator" />
-	
+
 	<bean id="paypalClient" class="com.lifeinsurance.payment.PayPalClient" />
-	
+
 
 
 </beans>

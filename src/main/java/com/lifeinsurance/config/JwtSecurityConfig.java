@@ -25,9 +25,6 @@ import com.lifeinsurance.security.JwtAuthenticationProvider;
 import com.lifeinsurance.security.JwtAuthenticationTokenFilter;
 import com.lifeinsurance.security.JwtFailureHandler;
 import com.lifeinsurance.security.JwtSuccessHandler;
-import com.lifeinsurance.service.AwsEmailService;
-import com.lifeinsurance.service.AwsEmailServiceImpl;
-import com.lifeinsurance.utils.AwsUtils;
 
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
@@ -69,10 +66,7 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
 		return 604800;
 	}
 	
-	@Bean
-	public AwsEmailService awsEmailService() {
-		return new AwsEmailServiceImpl(AwsUtils.createSimpleEmailService());
-	}
+
 
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
